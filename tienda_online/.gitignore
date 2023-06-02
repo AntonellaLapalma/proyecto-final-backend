@@ -1,0 +1,4 @@
+Env/
+*.pyc
+__pycache__/
+media/
