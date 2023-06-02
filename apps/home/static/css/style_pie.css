@@ -1,0 +1,117 @@
+footer{
+    color: var(--color_blanco);
+    padding: 2% 18%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    background-color: var(--color_secundario);
+    box-shadow: 0px 0px 5px  var(--color_sombras); /* sombras */  
+}
+#titulo-footer{
+    border-bottom: solid 1px var(--color_blanco);
+    padding-left: 10px;
+}
+#ubi{
+    height: 24px;
+    filter: brightness(0%) invert(100%);
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+#reloj{
+    height: 13px;
+    filter: brightness(0%) invert(100%);
+    padding-left: 6px;
+    padding-right: 7px;
+}
+#correo{
+    height: 14px;
+    filter: brightness(0%) invert(100%);
+    padding-left: 6px;
+    padding-right: 7px;
+}
+#datos-local section a:hover img{
+    filter: invert(84%) sepia(51%) saturate(4420%) hue-rotate(1deg) brightness(108%) contrast(100%);
+    transition: 0.2s ease;  
+}
+#datos-local section p:hover img{
+    filter: invert(84%) sepia(51%) saturate(4420%) hue-rotate(1deg) brightness(108%) contrast(100%);
+    transition: 0.2s ease;
+}
+#datos-local section a:hover{
+    color: var(--color_principal);
+    transition: 0.2s ease;
+}
+#datos-local section p:hover{
+    color: var(--color_principal);
+    transition: 0.2s ease;
+    cursor: default;
+}
+#datos-local section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 0px;
+}
+#datos-local{
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+#datos-local section p,a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 0px;
+  }
+#datos-local a{
+    align-content: center;
+    color: var(--color_blanco);
+    font-weight: 100;
+}
+#datos-local p{
+    font-weight: 100;
+}
+#contacto section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 0px;
+}
+#contacto{
+    padding-top: 20px;
+    padding-right: 20px;
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+#whatsapp, #instagram{
+    height: 20px;
+    filter: invert(0%) sepia(29%) saturate(214%) hue-rotate(356deg) brightness(97%) contrast(91%);
+    padding: 3px;
+}
+#contacto section{
+    margin-left: 10px;
+    padding: 5px 5px;
+    height: 25px;
+    width: 25px;
+    background-color: var(--color_principal);
+    border-radius: 50%;
+}
+#contacto section:hover{
+    background-color: var(--color_amarillo_hover);
+}
+#contacto section a:hover img{
+    filter: invert(100%) sepia(8%) saturate(0%) hue-rotate(80deg) brightness(107%) contrast(108%);
+    transition: 0.2s ease;
+}
+#contacto section a:active img{
+    filter: invert(100%) sepia(0%) saturate(1681%) hue-rotate(219deg) brightness(110%) contrast(85%);
+}
+footer div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

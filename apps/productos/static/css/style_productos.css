@@ -1,0 +1,118 @@
+#contenido{
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content:center;
+}
+#ruta-contenido{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+#ruta-contenido li{
+    margin-right: 10px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#li-home ,.li-ruta2{
+    background-color: var(--color_secundario);
+}
+#li-home:hover{
+    background-color: var(--color_terciario);
+}
+#home{
+    color: var(--color_blanco);
+}
+.li-ruta{
+    background-color: var(--color_principal);
+}
+.li-ruta2 a{
+    color: var(--color_blanco);
+}
+.li-ruta2:hover{
+    background-color: var(--color_terciario);
+}
+.li-ruta:hover{
+    background-color: var(--color_amarillo_hover);
+}
+.li-ruta a{
+    color: var(--color_secundario);
+}
+.articulo{
+    margin: 10px;
+    padding: 25px;
+    width: 220px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color_blanco);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px  #4040402b; /* sombras */ 
+}
+.articulo:hover{
+    box-shadow: 0px 0px 5px var(--color_sombras); /* sombras */
+    transition: 0.2s ease; 
+    cursor: pointer;
+}
+.seccion-img{
+    height: 63%;
+    border-bottom: 1px solid #40404021;
+}
+.seccion-datos{
+    height: 140px;
+    margin-top: 15px;
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+}
+.img-articulo{
+    width: 100%;
+}
+.titulo{
+    text-align: start;
+    left: 0%;
+    height: 80px;
+    font-weight: 400;
+}
+.estado{
+    margin-top: 10px;
+    font-weight: 400;
+}
+.precio{
+    font-size: 20px;
+    font-weight: 500;
+}
+.btn-art{
+    margin: 15px 0px;
+    padding: 5px;
+    width: 95%;
+    background-color: var(--color_principal);
+    border: none;
+    border-width: 1px;
+    border-color: rgba(68, 68, 68);
+    color: var(--color_secundario);
+    border-radius: 2px;
+}
+.btn-art:hover{
+    background-color: var(--color_secundario);
+    color: var(--color_blanco);
+    cursor: pointer;
+    transition: 0.2s ease; 
+}
+.btn-art:active{
+    background-color: var(--color_terciario);
+    color: var(--color_blanco);
+    transition: 0.2s ease; 
+}
+#sin-resultados{
+    margin: 20px 15px;
+    padding: 2%;
+    color: rgba(68, 68, 68);
+    background-color: var(--color_blanco);
+    font-size: 18px;
+    box-shadow: 0px 0px 5px  var(--color_sombras); /* sombras */ 
+}

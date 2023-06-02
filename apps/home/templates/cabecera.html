@@ -1,0 +1,62 @@
+{% load static %}
+<header>
+    <nav> 
+        <div id="nav-encabezado">
+            <section id="encabezado-logo">
+                <h1><a href="/" id="titulo">Logo</a></h1>
+            </section>
+            <form action="/buscar/" method="GET" id="contenedor-buscador">
+                <input placeholder="BUSCAR" type="text" name="item" id="buscador-input">
+                <button type="submit" id="buscador-btn"><img src="{% static 'img/lupa.svg' %} " alt="" id="buscador-img"></button>
+            </form>
+            <section id="encabezado-usuario">
+                <article id="mi-usuario">
+                    <a href="/login"><img src="{% static 'img/user.svg' %} " alt="user-img" id="user">
+                     Login</a>
+                </article>
+                <article id="carrito">
+                    <img src="{% static 'img/carrito.svg' %} " alt="carrito-img" id="carrito-img">
+                    <p>Carrito</p>
+                </article>
+            </section>
+        </div>
+        <div id="nav-categorias">
+            <div class="categorias">
+                <section id="btn-categoria">
+                    <img src="{% static 'img/menu3.svg' %} " alt="" id="menu-hamburguesa">
+                    <h4 id="titulo-categorias">CATEGORÍAS</h4>
+                    <img src="{% static 'img/flecha.svg' %} " alt="" id="flecha">
+                </section>
+                <ul id="menu-vertical">
+                    <!-- Busca en la tabla las categorias existentes -->
+                    {% for categoria in categorias %}
+                        <li class="categoria-item">
+                            <div class="categoria-contenedor">
+                                <section class="categoria-seccion">
+                                    <a href="{% url 'mostrar_productos' filtro_categoria=categoria.url %}" class="categoria-titulo">{{ categoria.nombre }}
+                                    <!-- Si la categoria tiene sub categorias se procede a agregar una flecha -->
+                                    {% if categoria.subcategoria_set.all %}
+                                        <img src="{% static 'img/flecha.svg' %}" alt="" class="menu-flecha">
+                                    {% endif %}
+                                    </a>
+                                </section>
+                                <!-- busca las sub categorias -->
+                                {% if categoria.subcategoria_set.all %}
+                                    <ul class="menu-sub-categorias" id="sub-categorias">
+                                        <!--  -->
+                                        {% for subcategoria in categoria.subcategoria_set.all %}
+                                            <!-- si coincide con la categoria los agrega al sub menu -->
+                                            {% if subcategoria.categoria == categoria %}
+                                                <li><a href="{% url 'mostrar_productos_subcategoria' filtro_categoria=categoria.url filtro_subcategoria=subcategoria.url %}">{{ subcategoria.nombre }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </li>
+                    {% endfor %}       
+                </ul>
+            </div> 
+        </div>
+    </nav>    
+</header>

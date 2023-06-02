@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<ul id="ruta-contenido">
+    {% if rutas %}
+        <li id="li-home"><a href="/" id="home">Home</a></li>
+        {% if rutas.0 and rutas.1 %}
+            <li class="li-ruta2"><a href="/categorias/{{ filtro_categoria }}">{{ rutas.0 }}</a></li>
+            <li class="li-ruta"><a href="/categorias/{{ filtro_categoria }}/{{ filtro_subcategoria }}">{{ rutas.1 }}</a></li>
+        {% endif %}
+        {% if rutas.0 and not rutas.1  %}
+        <li class="li-ruta"><a href="/categorias/{{ filtro_categoria }}">{{ rutas.0 }}</a></li>
+        {% endif %}
+    {% endif %}
+</ul>
+
+{% if productos %} <!-- Si se encuentran productos se procede a mostrarlos con un for -->
+    <div id="contenido">
+        {% for producto in productos %}
+            <article class="articulo"> <!-- Formato para mostrar los datos -->
+            <section class="seccion-img">
+                <!-- busca la imagen del producto almacenada -->
+                <img src="{% static 'media/' %}{{ producto.imagen_publicacion }}" alt="" class="img-articulo">
+            </section>
+            <section class="seccion-datos">
+                <!-- busca los datos del producto -->
+                <h4 class="titulo">{{ producto.titulo_publicacion }}</h4>
+                <h5 class="estado">Precio</h5> 
+                <p class="precio">$ {{ producto.precio }}</p>
+            </section>
+            <button class="btn-art">Agregar</button>
+        </article>
+        {% endfor %}
+        {% else %} <!-- Si no se encotraron productos registrados se muestra lo siguiente -->
+        <p id="sin-resultados">No se encontraron resultados.</p> 
+    </div>
+    
+{% endif %}
+{% endblock content %}
