@@ -3,27 +3,17 @@
     <nav> 
         <div id="nav-encabezado">
             <section id="encabezado-logo">
-                <h1><a href="/" id="titulo">Logo</a></h1>
+                <h1><a href="/" id="titulo">ONE TECK</a></h1>
             </section>
             <form action="/buscar/" method="GET" id="contenedor-buscador">
                 <input placeholder="BUSCAR" type="text" name="item" id="buscador-input">
                 <button type="submit" id="buscador-btn"><img src="{% static 'img/lupa.svg' %} " alt="" id="buscador-img"></button>
             </form>
-            <section id="encabezado-usuario">
-                <article id="mi-usuario">
-                    <a href="/login"><img src="{% static 'img/user.svg' %} " alt="user-img" id="user">
-                     Login</a>
-                </article>
-                <article id="carrito">
-                    <img src="{% static 'img/carrito.svg' %} " alt="carrito-img" id="carrito-img">
-                    <p>Carrito</p>
-                </article>
-            </section>
         </div>
         <div id="nav-categorias">
             <div class="categorias">
                 <section id="btn-categoria">
-                    <img src="{% static 'img/menu3.svg' %} " alt="" id="menu-hamburguesa">
+                    <img src="{% static 'img/menu.svg' %} " alt="" id="menu-hamburguesa">
                     <h4 id="titulo-categorias">CATEGORÍAS</h4>
                     <img src="{% static 'img/flecha.svg' %} " alt="" id="flecha">
                 </section>
@@ -56,7 +46,67 @@
                         </li>
                     {% endfor %}       
                 </ul>
-            </div> 
+            </div>
+            <div id="nav-seccion-usuario">
+                {% if user.is_authenticated %}
+                    <section id="carrito">
+                        <img src="{% static 'img/carrito.svg' %} " alt="carrito-img" class="img-c" id="carrito-img">
+                        <img src="{% static 'img/flecha.svg' %}" alt="flecha" class="img-c" id="flecha-carrito">
+                        <div id="mi-carrito">
+                            {% if productos_carrito %}
+                                {% for producto in productos_carrito %}
+                                    <section class="producto-carrito">
+                                        <img src="{% static 'media/' %}{{ producto.imagen }}" alt="" class="img-carrito">
+                                        <article class="producto-detalle">
+                                            <h3>{{ producto.producto }}</h3>
+                                            <section>
+                                                <p class="producto-cantidad">{{ producto.cantidad }}x </p>
+                                                <p class="producto-precio">${{ producto.precio }}</p> 
+                                            </section>
+                                        </article>
+                                    </section>
+                                {% endfor %}
+                            {% else %}
+                                <p id="carrito-vacio">Tu carrito está vacío.</p>
+                            {% endif %}
+                            {% if productos_carrito %}
+                                <section id="carrito-total">
+                                    <h3>Total</h3>
+                                    <p>$ {{ total_carrito }}</p>
+                                </section>
+                                <section id="botones-carrito">
+                                    <a href="/carrito/"id="ver-carrito">VER CARRITO</a>
+                                </section>
+                            {% else %}
+                            <section id="carrito-total">
+                                <h3>Total</h3>
+                                <p>$ 0.0</p>
+                            </section>
+                            <section id="botones-carrito">
+                                <a href="/carrito/"id="ver-carrito">VER CARRITO</a>
+                            </section>
+                            {% endif %}
+                        </div>
+                    </section>
+                {% endif %} 
+                <section>
+                    {% if user.is_authenticated %}
+                        <article id="mi-usuario">
+                            <a class="link-usuario">{{ user.first_name }} {{ user.last_name }}<img src="{% static 'img/flecha.svg' %}" alt="flecha" id="flecha-user"></a>
+                            <ul id="lista-usuario">
+                                <li><a href="/cuenta/">Mis datos</a></li>
+                                <li><a href="/pedidos/">Pedidos</a></li>
+                                <li><a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a></li>
+                            </ul>
+                        </article> 
+                    {% else %}
+                    <article id="mi-usuario">
+                        <a href="/iniciar_sesion/" class="link-usuario">INICIAR SESIÓN</a>
+                    </article>
+                    {% endif %}
+                    </article>
+                </section>
+            </div>
         </div>
     </nav>    
 </header>

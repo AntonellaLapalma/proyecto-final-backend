@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main class="main1">
+    <ul id="ruta-contenido">
+        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+        <li class="li-ruta"><a href="/cuenta/" class="btn-amarillo" id="li-ruta">Mis datos</a></li>
+    </ul>
+    <div class="contenedor-form">
+        <div class="formularios" id="cuenta"> 
+            <form class="form tarjeta-sinhover">
+                <h2>MIS DATOS</h2>
+                {% csrf_token %}
+                <div class="input-container">
+                    <input type="text" id="usuario" name="username" value="{{ user.username }}" readonly required>
+                    <label for="username" class="campo {% if user.username %} completado {% endif %}">Email</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="nombre" name="first_name" value="{{ user.first_name }}" readonly required>
+                    <label for="nombre" class="campo {% if user.first_name %} completado {% endif %}">Nombre</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="apellido" name="last_name" value="{{ user.last_name }}" readonly required>
+                    <label for="apellido" class="campo {% if user.last_name %} completado {% endif %}">Apellido</label>
+                </div>
+                <!-- <button type="submit" class="enviar">MODIFICAR DATOS</button> -->
+                <a href="{% url 'cerrar_sesion' %}" id="registrarse">CERRAR SESIÓN</a>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}

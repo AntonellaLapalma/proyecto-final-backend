@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main class="main1">
+    <ul id="ruta-contenido">
+        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+        <li class="li-ruta"><a href="/registro/" class="btn-amarillo" id="li-ruta">Registrarme</a></li>
+    </ul>
+    <div class="contenedor-form">
+        <div class="formularios" id="form2">
+            <form class="form tarjeta-sinhover" method="post" action="{% url 'registrar' %}">
+                <h2>CREAR CUENTA</h2>
+                {% csrf_token %}
+                <div class="input-container">
+                    {{ form.username }}
+                    <label for="usuario" class="campo">Email</label>
+                    {% if form.errors.username %}
+                        <p class="error">{{ form.errors.username }}</p> 
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.first_name }}
+                    <label for="nombre" class="campo">Nombre</label>
+                    {% if form.errors.first_name %}
+                        <p class="error">{{ form.errors.first_name }}</p> 
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.last_name }}
+                    <label for="apellido" class="campo">Apellido</label>
+                    {% if form.errors.last_name %}
+                        <p class="error">{{ form.errors.last_name }}</p> 
+                    {% endif %}
+                </div>
+                
+                <div class="input-container">
+                    {{ form.password1 }}
+                    <label for="contra-registro" class="campo">Contraseña</label>
+                    {% if form.errors.password1 %}
+                        <p class="error">{{ form.errors.password1 }}</p> 
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.password2 }}
+                    <label for="conf-contra-registro" class="campo">Confirmar contraseña</label>
+                    {% if form.errors.password2 %}
+                        <p class="error">{{ form.errors.password2 }}</p> 
+                    {% endif %}
+                </div>
+                <button type="submit" class="enviar btn-negro">CONFIRMAR</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

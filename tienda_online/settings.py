@@ -28,13 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 PROJECTS_APPS = [
     'apps.productos',
-    'apps.clientes',
+    'apps.carrito',
     'apps.home',
+    'apps.usuarios',
 ]
 
 DJANGO_APPS = [
@@ -63,7 +63,7 @@ ROOT_URLCONF = 'tienda_online.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/home/templates','C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/productos/templates','C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/clientes/templates'],
+        'DIRS': ['C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/home/templates','C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/productos/templates','C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/carrito/templates','C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/usuarios/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,8 +133,9 @@ STATIC_URL = '/static/'
 # Directorios de archivos estáticos para desarrollo
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/home/static'),
+    os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/carrito/static'),
     os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/productos/static'),
-    os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/productos/static')
+    os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/usuarios/static')
     ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'C:/Users/anton/Desktop/proyecto_back/tienda_online/apps/productos/static/media')

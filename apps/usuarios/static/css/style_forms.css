@@ -1,0 +1,119 @@
+.contenedor-form{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.formularios{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+.formularios h2{
+    margin: 10px 0px 30px 0px;
+    padding-left: 20px;
+    font-weight: 900;
+    width: 95%;
+    border-bottom: 1px solid #40404021;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 30px 20px;
+    width: 100%;
+}
+.formularios .form .input-container label{
+    position: absolute;
+    top: 0;
+    transition: top 0.3s ease;
+    pointer-events: none;
+    margin: 20px 5px 5px;
+    font-weight: 400;
+    font-size: 18px;
+}
+.formularios .form .input-container input{
+    margin: 0px 25px;
+    padding: 10px 10px;
+    width: 90%;
+    height: 30px;
+    font-size: 20px;
+    color: gray;
+    border: none;
+    border-bottom: 1px solid #21212175;
+}
+.formularios .form .input-container input:focus{
+    border-color: var(--color_principal);
+    color: var(--color_secundario);
+    transition: 0.2s ease;
+}
+.input-container{
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.campo{
+    text-align: start;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    pointer-events: none;
+    color: gray;
+}
+.formularios .form .input-container input:focus + .campo{
+    color: var(--color_principal);
+}
+.formularios .form .input-container input:focus + .campo,
+.formularios .form .input-container input:valid + .campo{
+    top: -30px;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+.enviar{
+    margin-top: 30px;
+    padding: 15px;
+    width: 93%;
+    border: none;
+    font-weight: 900;
+    font-size: 20px;
+} 
+#cuenta .completado{
+    top: -30px;
+    font-size: 14px;
+    transition: 0.2s ease;  
+}  
+#registrarse{
+    color: var(--color_secundario);
+    margin: 20px 0px 0px 0px;
+    text-align: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+}
+#registrarse:hover{
+    color: var(--color_terciario);
+    transition: 0.2s ease; 
+}
+#registrarse:active{
+    color: var(--color_principal);
+}
+.error-form{
+    margin-top: 20px;
+    padding: 10px 20px;
+    max-width: 20%;
+    color: var(--color_blanco);
+    background-color: red;
+    border-radius: 5px;
+}
+.errorlist{
+    color: rgb(255, 0, 0);
+    margin-left:35px ;
+}

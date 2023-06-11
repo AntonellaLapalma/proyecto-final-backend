@@ -9,7 +9,10 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/style_cabecera.css' %}">
         <link rel="stylesheet" href="{% static 'css/style_productos.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_forms.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_carrito.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_conf_compra.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_pedidos.css' %}">
         <link rel="stylesheet" href="{% static 'css/style_pie.css' %}">
         <!-- ICON -->
         <link rel="icon" href="{% static 'img/ico.png' %}">
@@ -17,18 +20,13 @@
         <!-- FONTS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
-        <title>Tienda Online</title>
+        <title>ONE TECK</title>
     </head>
     <body>
         {% include "cabecera.html" %} <!-- Llamo el archivo de la cabecera de la pag -->
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
+        {% block content %}
+        {% endblock %}
         {% include "pie.html" %} <!-- Llamo el archivo del pie de pag -->
     </body>
 </html>

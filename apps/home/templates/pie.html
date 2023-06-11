@@ -1,25 +1,32 @@
 {% load static %}
 <footer>
-    <h2 id="titulo-footer">Tienda Online</h2>
+    <h2 id="titulo-footer">ONE TECK</h2>
     <div>
-        <section id="datos-local">
+        <section class="footer-section" id="datos-local">
+            <h3 class="titulo-section">SUCURSALES</h3>
             <section>
-                <a href=""><img src="{% static 'img/ubi.svg' %} " alt="" id="ubi">Belgrano, CABA</a>
+                <a href="https://www.google.com.ar/maps/place/Av.+Cabildo+%26+Juramento,+Buenos+Aires/@-34.5619965,-58.4591956,17z/data=!3m1!4b1!4m6!3m5!1s0x95bcb5d3849c3221:0xc8999711cc581a5b!8m2!3d-34.5620009!4d-58.4566207!16s%2Fg%2F11gdqmf1t4?entry=ttu" target="_blank"><img src="{% static 'img/ubi.svg' %} " alt="" id="ubi">Belgrano, CABA</a>
             </section>
             <section>
                 <p><img src="{% static 'img/reloj.svg' %} " alt="" id="reloj">Lunes a Viernes de 8:00hs a 20:00hs</p> 
             </section>
-            <section>
-                <a href="mailto:tienda_online@gmail.com"><img src="{% static 'img/correo.svg' %} " alt="" id="correo">tienda_online@gmail.com</a>   
-            </section>
+            
         </section>
-        <section id="contacto">
+        <section class="footer-section" id="contacto">
+            <h3 class="titulo-section">CONTACTO</h3>
             <section>
-                <a href="https://wa.me/1152455356"><img src="{% static 'img/whatsapp.svg' %} " alt="" id="whatsapp"></a>
+                <p><img src="{% static 'img/correo.svg' %} " alt="" id="correo">oneteck@gmail.com</p>   
             </section>
             <section>
-                <a href="https://www.instagram.com"><img src="{% static 'img/instagram2.svg' %} " alt="" id="instagram"></a> 
+                <a href="https://wa.me/1152455356" target="_blank"><img src="{% static 'img/whatsapp.svg' %} " alt="" id="whatsapp">1599999999</a>
             </section>
-        </section>      
+            
+        </section>   
+        <section class="footer-section" id="contacto">
+            <h3 class="titulo-section">SEGUINOS!</h3>
+            <section>
+                <a href="https://www.instagram.com" target="_blank"><img src="{% static 'img/instagram.svg' %} " alt="" id="instagram">@oneteck</a> 
+            </section>
+        </section>   
     </div>
 </footer>

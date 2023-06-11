@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main class="main1">
+    <ul id="ruta-contenido">
+        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+        <li class="li-ruta"><a href="/iniciar_sesion/" class="btn-amarillo" id="li-ruta">Iniciar sesión</a></li>
+    </ul>
+    <div class="contenedor-form">
+        <div class="formularios" id="form1">
+            <form class="form tarjeta-sinhover" method="POST" action="/iniciar_sesion/">
+                <h2>INICIAR SESIÓN</h2>
+                {% csrf_token %}
+                <div class="input-container">
+                    {{ form.username }}
+                    <label for="username" class="campo" id="email-label">Email</label>
+                    {% if form.errors.username %}
+                        <p class="error">{{ form.errors.username }}</p> 
+                    {% endif %}
+                </div>
+                <div class="input-container">
+                    {{ form.password }}
+                    <label for="password" class="campo" id="password-label">Contraseña</label>
+                </div>
+                <p class="errorlist">{{ error }}</p>
+                <button type="submit" class="enviar btn-negro" id="ingresar-btn">INGRESAR</button>
+                <a href="/registro/" id="registrarse">REGISTRARME</a>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}

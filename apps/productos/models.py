@@ -6,6 +6,8 @@ class Categoria(models.Model):
     url = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
+        # se guarda el nombre con su primer letra en may
+        self.nombre = unidecode(self.nombre).capitalize()
         # guarda el nombre en minuscula sin espacios
         self.url = unidecode(self.nombre).replace(" ", "-").lower()
         super().save(*args, **kwargs)
@@ -20,6 +22,8 @@ class Subcategoria(models.Model):
     url = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
+        # se guarda el nombre con su primer letra en may
+        self.nombre = unidecode(self.nombre).capitalize()
         # guarda el nombre en minuscula sin espacios
         self.url = unidecode(self.nombre).replace(" ", "-").lower()
         super().save(*args, **kwargs)

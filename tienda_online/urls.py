@@ -15,15 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.home.views import Index_views
-from apps.productos.views import Productos_views
-from apps.clientes.views import Clientes_views
+from apps.home.views import PaginaPrinciaplView
+from apps.productos.views import ProductosView
+from apps.usuarios.views import UsuariosView, IniciarSesionView, RegistroView, MisDatosView, MisPedidosView
+from apps.carrito.views import CarritoView, ConfirmacionCompraView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Index_views.categorias),
-    path('buscar/', Productos_views.buscar_productos, name='buscar'),
-    path('categorias/<str:filtro_categoria>/', Productos_views.mostrar_productos, name='mostrar_productos'),
-    path('categorias/<str:filtro_categoria>/<str:filtro_subcategoria>/', Productos_views.mostrar_productos_subcategoria, name='mostrar_productos_subcategoria'),
-    path('login/', Clientes_views.iniciar_sesion, name='login'),
+
+    path('', PaginaPrinciaplView.as_view(), name='inicio'),
+
+    path('buscar/', ProductosView.buscar_productos, name='buscar'),
+    path('categorias/<str:filtro_categoria>/', ProductosView.mostrar_productos, name='mostrar_productos'),
+    path('categorias/<str:filtro_categoria>/<str:filtro_subcategoria>/', ProductosView.mostrar_productos_subcategoria, name='mostrar_productos_subcategoria'),
+
+    path('iniciar_sesion/', IniciarSesionView.as_view(), name='iniciar_sesion'),
+    path('registro/', RegistroView.as_view(), name='registrar'),
+    path('cuenta/', MisDatosView.as_view(), name='mis_datos'),
+    path('pedidos/', MisPedidosView.as_view(), name='pedidos'),
+    path('pedidos/<int:id>/', MisPedidosView.as_view(), name='detalle_pedido'),
+    path('cerrar_sesion/', UsuariosView.as_view(), name='cerrar_sesion'),
+
+    path('agregar-al-carrito/<int:producto_id>/', CarritoView.as_view(), name='agregar_al_carrito'),
+    path('carrito/', CarritoView.as_view(), name='carrito'),
+    path('carrito/<int:producto_id>/', CarritoView.as_view(), name='modificar_carrito'),
+    path('carrito/<int:producto_id>/eliminar/', CarritoView.as_view(), name='eliminar_del_carrito'),
+    path('finalizar-compra/', CarritoView.as_view(), name='finalizar_compra'),
+    path('confirmacion_compra/', ConfirmacionCompraView.as_view(), name='confirmacion_compra'),
 ]

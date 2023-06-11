@@ -1,24 +1,24 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-
-<ul id="ruta-contenido">
+<main class="main1">
+    <ul id="ruta-contenido">
     {% if rutas %}
-        <li id="li-home"><a href="/" id="home">Home</a></li>
+        <li><a href="/" class="btn-negro" id="home">Home</a></li>
         {% if rutas.0 and rutas.1 %}
-            <li class="li-ruta2"><a href="/categorias/{{ filtro_categoria }}">{{ rutas.0 }}</a></li>
-            <li class="li-ruta"><a href="/categorias/{{ filtro_categoria }}/{{ filtro_subcategoria }}">{{ rutas.1 }}</a></li>
+            <li><a href="/categorias/{{ filtro_categoria }}" class="btn-amarillo" id="li-ruta2">{{ rutas.0 }}</a></li>
+            <li><a href="/categorias/{{ filtro_categoria }}/{{ filtro_subcategoria }}" class="btn-negro" id="li-ruta">{{ rutas.1 }}</a></li>
         {% endif %}
         {% if rutas.0 and not rutas.1  %}
-        <li class="li-ruta"><a href="/categorias/{{ filtro_categoria }}">{{ rutas.0 }}</a></li>
+        <li><a href="/categorias/{{ filtro_categoria }}" class="btn-amarillo" id="li-ruta">{{ rutas.0 }}</a></li>
         {% endif %}
     {% endif %}
-</ul>
+    </ul>
 
-{% if productos %} <!-- Si se encuentran productos se procede a mostrarlos con un for -->
+    {% if productos %} <!-- Si se encuentran productos se procede a mostrarlos con un for -->
     <div id="contenido">
         {% for producto in productos %}
-            <article class="articulo"> <!-- Formato para mostrar los datos -->
+            <article class="articulo tarjeta"> <!-- Formato para mostrar los datos -->
             <section class="seccion-img">
                 <!-- busca la imagen del producto almacenada -->
                 <img src="{% static 'media/' %}{{ producto.imagen_publicacion }}" alt="" class="img-articulo">
@@ -29,12 +29,17 @@
                 <h5 class="estado">Precio</h5> 
                 <p class="precio">$ {{ producto.precio }}</p>
             </section>
-            <button class="btn-art">Agregar</button>
+            <form action="{% url 'agregar_al_carrito' producto_id=producto.id %}" method="POST" id="form-producto">
+                {% csrf_token %}
+                <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                <input type="hidden" name="accion" value="agregar">
+                <button type="submit" class="btn-art btn-amarillo">Agregar</button>
+              </form>
         </article>
         {% endfor %}
         {% else %} <!-- Si no se encotraron productos registrados se muestra lo siguiente -->
-        <p id="sin-resultados">No se encontraron resultados.</p> 
+        <p id="sin-resultados">Oops! Sin resultados...</p> 
     </div>
-    
 {% endif %}
+</main>
 {% endblock content %}

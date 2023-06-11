@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<main class="main1">
+    <ul id="ruta-contenido">
+        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+        <li class="li-ruta"><a href="/carrito/" class="btn-amarillo" id="li-ruta">Carrito</a></li>
+    </ul>
+    {% if productos_carrito %}
+    <div id="contenedor-carrito-p">
+        <div class="tarjeta-sinhover" id="mi-carrito-pagina">
+            <div id="carrito-encabezado">
+                <h3 class="img-encabezado"></h3>
+                <h3 class="producto-encabezado">Producto</h3>
+                <h3 class="cant-encabezado">Cantidad</h3>
+                <h3 class="precio-encabezado">Precio</h3>
+                <h3 class="x-encabezado"></h3>
+            </div>
+            {% for producto in productos_carrito %}
+                <section class="producto-carrito-p">
+                    <section class="img-encabezado">
+                        <img src="{% static 'media/' %}{{ producto.imagen }}" alt=""  id="img-carrito-p">
+                    </section>
+                    <h3 class="producto-encabezado">{{ producto.producto }}</h3>
+                    <section class="cantidad-p">
+                        <article>
+                            <form method="POST" action="{% url 'modificar_carrito' producto.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="accion" value="restar">
+                                <input type="hidden" name="producto_id" value="{{ producto.id }}">  
+                                <button type="submit" class="btn-restar">-</button>
+                            </form>
+                            <p class="cant-encabezado">{{ producto.cantidad }}</p>
+                            <form method="POST" action="{% url 'modificar_carrito' producto.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="accion" value="agregar">
+                                <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                                <button type="submit" class="btn-agregar">+</button>
+                            </form>
+                        </article>
+                    </section>
+                    <p class="precio-encabezado">${{ producto.precio }}</p>
+                    <form method="POST" action="{% url 'modificar_carrito' producto.id %}" class="x-encabezado">
+                        {% csrf_token %}
+                        <input type="hidden" name="accion" value="eliminar">
+                        <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                        <button type="submit" class="btn-encabezado"><img src="{% static 'img/eliminar.svg' %} " alt="" id="close-form"></button>
+                    </form>
+                </section>
+            {% endfor %}
+        </div>
+        <section class="tarjeta-sinhover" id="carrito-total-p">
+            <article>
+                <h3>Total</h3>
+                <p>$ {{ total_carrito }}</p> 
+            </article>
+            <form action="{% url 'finalizar_compra' %}" method="post" class="btn-form">
+                {% csrf_token %}
+                <input type="hidden" name="accion" value="finalizar_compra">
+                <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                <button type="submit" class="btn-amarillo" id="finalizar-compra-p">Finalizar Compra</button>
+            </form>
+        </section>
+    </div>
+    {% else %}
+        <p id="carrito-vacio-p">Oops! Tu carrito está vacío!</p>
+    {% endif %}
+</main>
+
+{% endblock %}

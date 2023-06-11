@@ -1,27 +1,49 @@
+from django.views.generic import TemplateView
 from django.shortcuts import render
 from .models import Producto, Categoria, Subcategoria
+from apps.carrito.views import CarritoView
 
-class Productos_views:
+class ProductosView(TemplateView):
     @staticmethod
     def mostrar_productos(request, filtro_categoria):
+        carrito_view = CarritoView()
+        carrito = carrito_view.obtener_productos_carrito(request)
         # Busca y muestra productos en la tabla productos según la categoría solicitada
         productos = Producto.objects.filter(categoria=(filtro_categoria.replace("-", " ")).title())
         categorias = Categoria.objects.all()
         subcategorias = Subcategoria.objects.all()
         rutas = [(filtro_categoria.replace("-", " ")).title()]
-        return render(request, 'mostrar_productos.html', {'categorias': categorias, 'subcategorias': subcategorias, 'productos': productos, 'filtro_categoria':filtro_categoria,'rutas':rutas})
+        return render(request, 'mostrar_productos.html', {'categorias': categorias,
+                                                          'subcategorias': subcategorias, 
+                                                          'productos': productos,
+                                                          'filtro_categoria':filtro_categoria,
+                                                          'rutas':rutas,
+                                                          'productos_carrito': carrito[0], 
+                                                          'total_carrito': carrito[1],})
     
     @staticmethod
     def mostrar_productos_subcategoria(request, filtro_categoria, filtro_subcategoria):
+        carrito_view = CarritoView()
+        carrito = carrito_view.obtener_productos_carrito(request)
         # Busca y muestra productos en la tabla productos según la categoría y subcategoría solicitada
         productos = Producto.objects.filter(categoria=(filtro_categoria.replace("-", " ")).title(), marca=filtro_subcategoria.capitalize())
         categorias = Categoria.objects.all()
         subcategorias = Subcategoria.objects.all()
         rutas = [(filtro_categoria.replace("-", " ")).title(), (filtro_subcategoria.replace("-", " ")).title()]
-        return render(request, 'mostrar_productos.html', {'categorias': categorias, 'subcategorias': subcategorias, 'productos': productos, 'filtro_categoria':filtro_categoria, 'filtro_subcategoria':filtro_subcategoria, 'rutas':rutas})
+        return render(request, 'mostrar_productos.html', {'categorias': categorias, 
+                                                          'subcategorias': subcategorias, 
+                                                          'productos': productos, 
+                                                          'filtro_categoria':filtro_categoria, 
+                                                          'filtro_subcategoria':filtro_subcategoria, 
+                                                          'rutas':rutas,
+                                                          'productos_carrito': carrito[0], 
+                                                          'total_carrito': carrito[1],
+                                                          })
     
     @staticmethod
     def buscar_productos(request):
+        carrito_view = CarritoView()
+        carrito = carrito_view.obtener_productos_carrito(request)
         #busca productos segun la palabra ingresada y los titulos de publicacion
         if request.method == 'GET':
             categorias = Categoria.objects.all()
@@ -29,4 +51,11 @@ class Productos_views:
             texto = request.GET.get('item')  # Obtengo el texto de búsqueda
             productos = Producto.objects.filter(titulo_publicacion__icontains=texto)
             rutas = [texto.title()]
-            return render(request, 'mostrar_productos.html', {'categorias': categorias, 'subcategorias': subcategorias, 'productos': productos, 'filtro_categoria':request,'rutas':rutas})
+            return render(request, 'mostrar_productos.html', {'categorias': categorias, 
+                                                              'subcategorias': subcategorias, 
+                                                              'productos': productos, 
+                                                              'filtro_categoria':request,
+                                                              'rutas':rutas,
+                                                              'productos_carrito': carrito[0], 
+                                                              'total_carrito': carrito[1],
+                                                              })
