@@ -2,72 +2,71 @@
 {% load static %}
 {% block content %}
 <main class="main1">
-    {% if detalle_pedido == '' %}
-    <ul id="ruta-contenido">
-        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
-        <li class="li-ruta"><a href="/pedidos/" class="btn-amarillo" id="li-ruta">Pedidos</a></li>
-    </ul>
-    {% if pedidos %}
-        {% for pedido in pedidos %}
-        <div class="tarjeta-sinhover contenedor-pedidos">
-            <div class="encabezado-pedidos encabezado-1-pedidos">
-                <h3 class="titulo-tarjeta-pedidos">{{ pedido.fecha_creacion }}</h3>
-            </div>
-            <div class="encabezado-pedidos">
-                <h3 class="encabezado-id">ID Compra</h3>
-                <h3 class="encabezado-cant">Cantidad de productos</h3>
-                <h3 class="encabezado-total">Total</h3>
-                <h3 class="encabezado-detalle"></h3>
-            </div>
-            <ul class="lista-pedidos">
-                <li class="encabezado-id">{{ pedido.id }}</li>
-                <li class="encabezado-cant">{{ pedido.cantidad_productos }}</li>
-                <li class="encabezado-total">${{ pedido.total }}</li>  
-                <li class="encabezado-detalle"><a href="{% url 'detalle_pedido' id=pedido.id %}" class="btn-amarillo btn-detalle">Ver detalle</a></li>
-            </ul>
-        </div>
-        {% endfor %}
-    {% else %}
-        <p id="carrito-vacio-p">Oops! No hay pedidos realizados!</p>
-    {% endif %}
-    {% else %}
-            
-    <ul id="ruta-contenido">
-        <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
-        <li class="li-ruta"><a href="/pedidos/" class="btn-amarillo" id="li-ruta">Pedidos</a></li>
-        <li class="li-ruta"><a href="" class="btn-amarillo" id="li-ruta">Ver detalle</a></li>
-    </ul>
-    {% if detalle_pedido %}
-    <div class="columnas-pedidos-detalle">
-        <div class="tarjeta-sinhover columna-pedidos1">
-            <div class="encabezado-pedidos encabezado-1-pedidos">
-                <h3 class="titulo-tarjeta-pedidos">ID Pedido: {% for detalle in detalle_pedido %}{{ detalle.compra_id }}{% endfor %}</h3>
-            </div>
-            <div class="encabezado-pedidos">
-                <h3 class="encabezado-producto-detalle">Producto</h3>
-                <h3 class="encabezado-producto-cant">Cantidad de productos</h3>
-                <h3 class="encabezado-producto-unidad">Precio unitario</h3>
-                <h3 class="encabezado-producto-total">Monto total</h3>
-            </div>
-            {% for detalle in detalle_pedido %}
-            <div>
-                <ul class="lista-detalle-pedido">
-                    <li class="encabezado-producto-detalle">{{ detalle.producto_nombre }}</li>
-                    <li class="encabezado-producto-cant">{{ detalle.cantidad }}</li>
-                    <li class="encabezado-producto-unidad">${{ detalle.precio_unitario }}</li>  
-                    <li class="encabezado-producto-total">${{ detalle.monto_total }}</li>
+    {% if detalle_pedido is None %}
+        <ul id="ruta-contenido">
+            <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+            <li class="li-ruta"><a href="/pedidos/" class="btn-amarillo" id="li-ruta">Pedidos</a></li>
+        </ul>
+        {% if pedidos %}
+            {% for pedido in pedidos %}
+            <div class="tarjeta-sinhover contenedor-pedidos">
+                <div class="encabezado-pedidos encabezado-1-pedidos">
+                    <h3 class="titulo-tarjeta-pedidos">{{ pedido.fecha_creacion }}</h3>
+                </div>
+                <div class="encabezado-pedidos">
+                    <h3 class="encabezado-id">ID Compra</h3>
+                    <h3 class="encabezado-cant">Cantidad de productos</h3>
+                    <h3 class="encabezado-total">Total</h3>
+                    <h3 class="encabezado-detalle"></h3>
+                </div>
+                <ul class="lista-pedidos">
+                    <li class="encabezado-id">{{ pedido.id }}</li>
+                    <li class="encabezado-cant">{{ pedido.cantidad_productos }}</li>
+                    <li class="encabezado-total">${{ pedido.total }}</li>  
+                    <li class="encabezado-detalle"><a href="{% url 'detalle_pedido' id=pedido.id %}" class="btn-amarillo btn-detalle">Ver detalle</a></li>
                 </ul>
             </div>
             {% endfor %}
-        </div>    
-        <div class="tarjeta-sinhover columna-pedidos2">
-            <div class="encabezado-pedidos encabezado-1-pedidos">
-                <h3 class="titulo-tarjeta-pedidos">Total</h3>
+        {% else %}
+            <p id="carrito-vacio-p">Oops! No hay pedidos realizados!</p>
+        {% endif %}
+    {% else %} 
+        <ul id="ruta-contenido">
+            <li id="li-home"><a href="/" class="btn-negro" id="home">Home</a></li>
+            <li class="li-ruta"><a href="/pedidos/" class="btn-amarillo" id="li-ruta">Pedidos</a></li>
+            <li class="li-ruta"><a href="" class="btn-amarillo" id="li-ruta">Ver detalle</a></li>
+        </ul>
+        {% if detalle_pedido %}
+            <div class="columnas-pedidos-detalle">
+                <div class="tarjeta-sinhover columna-pedidos1">
+                    <div class="encabezado-pedidos encabezado-1-pedidos">
+                        <h3 class="titulo-tarjeta-pedidos">ID Pedido: {% for detalle in detalle_pedido %}{{ detalle.compra_id }}{% endfor %}</h3>
+                    </div>
+                    <div class="encabezado-pedidos">
+                        <h3 class="encabezado-producto-detalle">Producto</h3>
+                        <h3 class="encabezado-producto-cant">Cantidad de productos</h3>
+                        <h3 class="encabezado-producto-unidad">Precio unitario</h3>
+                        <h3 class="encabezado-producto-total">Monto total</h3>
+                    </div>
+                    {% for detalle in detalle_pedido %}
+                    <div>
+                        <ul class="lista-detalle-pedido">
+                            <li class="encabezado-producto-detalle">{{ detalle.producto_nombre }}</li>
+                            <li class="encabezado-producto-cant">{{ detalle.cantidad }}</li>
+                            <li class="encabezado-producto-unidad">${{ detalle.precio_unitario }}</li>  
+                            <li class="encabezado-producto-total">${{ detalle.monto_total }}</li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>    
+                <div class="tarjeta-sinhover columna-pedidos2">
+                    <div class="encabezado-pedidos encabezado-1-pedidos">
+                        <h3 class="titulo-tarjeta-pedidos">Total</h3>
+                    </div>
+                    <p>$  {% for pedido in pedido_total %}{{ pedido.total }}{% endfor %}</p>
+                </div>
             </div>
-            <p>$ {% for pedido in pedidos %}{{ pedido.total }}{% endfor %}</p>
-        </div>
-    </div>
+        {% endif %}
     {% endif %}
-{% endif %}
 </main>
 {% endblock content %}

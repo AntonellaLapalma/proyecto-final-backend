@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
-from apps.productos.models import Categoria, Subcategoria
+from apps.productos.models import Producto, Categoria, Subcategoria
 from apps.carrito.views import CarritoView
 
 class IndexView(TemplateView):
@@ -8,13 +8,15 @@ class IndexView(TemplateView):
 
 class PaginaPrinciaplView(IndexView):
     template_name='contenido_index.html'
+    
     def get(self,request):
         categorias = Categoria.objects.all()
         subcategorias = None
         carrito_view = CarritoView()
         carrito = carrito_view.obtener_productos_carrito(request)
         # Obtiene el parametro de filtrado de la URL
-        filtro_categoria = request.POST.get('filtro_categoria')  
+        filtro_categoria = request.POST.get('filtro_categoria')
+        productos = Producto.objects.filter(stock__gt=0)
 
         if filtro_categoria:  # Si se proporciona un filtro de categoria
             categoria = Categoria.objects.get(url=filtro_categoria)  # Obtiene la categoria correspondiente
@@ -24,5 +26,5 @@ class PaginaPrinciaplView(IndexView):
                                                     'subcategorias': subcategorias,
                                                     'productos_carrito': carrito[0], 
                                                     'total_carrito': carrito[1],
-                                                    })
+                                                    'productos':productos,})
 

@@ -67,7 +67,7 @@ body::-webkit-scrollbar-thumb{
 }
 .main1{
     margin-top: 152px;
-    padding: 2% 18%;
+    padding: 2% 18% 10%;
     left: 0%;
     right: 0%;
     min-height: 75vh;
@@ -83,6 +83,9 @@ body::-webkit-scrollbar-thumb{
     display: flex;
     flex-direction: column;
     justify-content:start;
+}
+#div-inicio{
+    padding: 2% 15% 5%;
 }
 /* clases predefinidas */
 

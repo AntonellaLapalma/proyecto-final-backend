@@ -7,7 +7,7 @@ class Categoria(models.Model):
 
     def save(self, *args, **kwargs):
         # se guarda el nombre con su primer letra en may
-        self.nombre = unidecode(self.nombre).capitalize()
+        self.nombre = unidecode(self.nombre).title()
         # guarda el nombre en minuscula sin espacios
         self.url = unidecode(self.nombre).replace(" ", "-").lower()
         super().save(*args, **kwargs)
@@ -18,12 +18,12 @@ class Categoria(models.Model):
     
 class Subcategoria(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=30, verbose_name='subcategoría')
+    nombre = models.CharField(primary_key=True,max_length=30, verbose_name='subcategoría')
     url = models.CharField(max_length=100, blank=True)
 
     def save(self, *args, **kwargs):
         # se guarda el nombre con su primer letra en may
-        self.nombre = unidecode(self.nombre).capitalize()
+        self.nombre = unidecode(self.nombre).title()
         # guarda el nombre en minuscula sin espacios
         self.url = unidecode(self.nombre).replace(" ", "-").lower()
         super().save(*args, **kwargs)

@@ -1,5 +1,4 @@
 from django import forms
-from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.validators import EmailValidator, RegexValidator, validate_email
@@ -16,10 +15,7 @@ class InicioSesionForm(AuthenticationForm):
         required=True,
         validators=[
             EmailValidator(
-                message='Ingresa un email válido en el campo de email.'
-            )
-        ]
-    )
+                message='Ingresa un email válido en el campo de email.')])
 
     class Meta:
         model = User
@@ -31,20 +27,15 @@ class RegistroForm(UserCreationForm):
         required=True,
         validators=[
             EmailValidator(
-                message='Ingresa un email válido en el campo de email.'
-            )
-        ]
-    )
+                message='Ingresa un email válido en el campo de email.')])
+    
     first_name = forms.CharField(
         max_length=30,
         required=True,
         validators=[
             RegexValidator(
                 r'^[a-zA-Z]+$',
-                'Ingresa solo letras en el campo de nombre.'
-            )
-        ]
-    )
+                'Ingresa solo letras en el campo de nombre.')])
     
     last_name = forms.CharField(
         max_length=30,
@@ -52,10 +43,7 @@ class RegistroForm(UserCreationForm):
         validators=[
             RegexValidator(
                 r'^[a-zA-Z]+$',
-                'Ingresa solo letras en el campo de apellido.'
-            )
-        ]
-    )
+                'Ingresa solo letras en el campo de apellido.')])
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -63,5 +51,4 @@ class RegistroForm(UserCreationForm):
                   'last_name',
                   'username',
                   'password1',
-                  'password2'
-                  )
+                  'password2')

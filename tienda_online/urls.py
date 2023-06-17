@@ -21,13 +21,13 @@ from apps.usuarios.views import UsuariosView, IniciarSesionView, RegistroView, M
 from apps.carrito.views import CarritoView, ConfirmacionCompraView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
 
     path('', PaginaPrinciaplView.as_view(), name='inicio'),
 
-    path('buscar/', ProductosView.buscar_productos, name='buscar'),
-    path('categorias/<str:filtro_categoria>/', ProductosView.mostrar_productos, name='mostrar_productos'),
-    path('categorias/<str:filtro_categoria>/<str:filtro_subcategoria>/', ProductosView.mostrar_productos_subcategoria, name='mostrar_productos_subcategoria'),
+    path('buscar/', ProductosView.as_view(), name='buscar'),
+    path('categorias/<str:filtro_categoria>/', ProductosView.as_view(), name='mostrar_productos'),
+    path('categorias/<str:filtro_categoria>/<str:filtro_subcategoria>/', ProductosView.as_view(), name='mostrar_productos_subcategoria'),
 
     path('iniciar_sesion/', IniciarSesionView.as_view(), name='iniciar_sesion'),
     path('registro/', RegistroView.as_view(), name='registrar'),

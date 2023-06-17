@@ -117,3 +117,9 @@
     color: rgb(255, 0, 0);
     margin-left:35px ;
 }
+#pagina-admin{
+    width: 92%;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+}

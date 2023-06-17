@@ -22,7 +22,9 @@
                     {{ form.password }}
                     <label for="password" class="campo" id="password-label">Contraseña</label>
                 </div>
-                <p class="errorlist">{{ error }}</p>
+                {% if form.errors != None %}
+                    <p class="errorlist">{{ error }}</p>
+                {% endif %}
                 <button type="submit" class="enviar btn-negro" id="ingresar-btn">INGRESAR</button>
                 <a href="/registro/" id="registrarse">REGISTRARME</a>
             </form>

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Producto, Categoria, Subcategoria
 
+@admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
     # lista los productos y llama las columnas declaradas entre ()
     list_display=('id','categoria','subcategoria','marca','modelo','stock','precio','titulo_publicacion','imagen_publicacion')
@@ -34,16 +35,14 @@ class ProductoAdmin(admin.ModelAdmin):
     #         # return form_field
     #     return super().formfield_for_foreignkey(db_field, request, **kwargs)
     
+@admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
     list_display=('nombre', 'url',)
     readonly_fields = ('url',)
 
+@admin.register(Subcategoria)
 class SubcategoriaAdmin(admin.ModelAdmin):
     list_display=('categoria','nombre', 'url',)
     list_filter=('categoria','nombre',)
     search_fields=('categoria','nombre',)
     readonly_fields = ('url',)
-
-admin.site.register(Producto,ProductoAdmin) # registra el modelo en admin
-admin.site.register(Categoria,CategoriaAdmin)
-admin.site.register(Subcategoria,SubcategoriaAdmin)

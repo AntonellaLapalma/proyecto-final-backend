@@ -10,29 +10,34 @@ class Carro:
     def agregar(self, producto):
         producto_id = str(producto.id)
         if producto_id not in self.carro:
-            self.carro[producto_id] = {
-                "producto_id": producto_id,
-                "nombre": producto.titulo_publicacion,
-                "precio": str(producto.precio),
-                "cantidad": 1,
-                "imagen": producto.imagen_publicacion.url
-            }
+            if producto.stock > 0:
+                self.carro[producto_id] = {
+                    "producto_id": producto_id,
+                    "nombre": producto.titulo_publicacion,
+                    "precio": str(producto.precio),
+                    "cantidad": 1,
+                    "imagen": producto.imagen_publicacion.url
+                }
+            else:
+                return False
         else:
-            self.carro[producto_id]["cantidad"] += 1
+            if producto.stock > 0:
+                if self.carro[producto_id]["cantidad"] < producto.stock:
+                    self.carro[producto_id]["cantidad"] += 1
+                else:
+                    return False
+
         self.guardar_carro()
     
-    def modificar(self, producto, accion):
+    def restar(self, producto):
         producto_id = str(producto.id)
         print(producto_id)
         if producto_id in self.carro:
-            if accion == 'agregar':
-                self.carro[producto_id]['cantidad'] += 1
-            elif accion == 'restar':
-                if self.carro[producto_id]['cantidad'] > 1:
-                    self.carro[producto_id]['cantidad'] -= 1
-                else:
-                    del self.carro[producto_id]
-            self.guardar_carro()
+            if self.carro[producto_id]['cantidad'] > 1:
+                self.carro[producto_id]['cantidad'] -= 1
+            else:
+                del self.carro[producto_id]
+        self.guardar_carro()
 
     def eliminar(self, producto):
         producto_id = str(producto)

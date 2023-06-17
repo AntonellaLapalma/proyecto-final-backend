@@ -147,7 +147,6 @@ nav{
     height: 18px;
     filter: invert(99%) sepia(1%) saturate(2%) hue-rotate(238deg) brightness(104%) contrast(101%);
 }
-
 #mi-usuario:hover{
     background-color: #4f4f4f;
 }
@@ -337,6 +336,8 @@ nav{
 #menu-vertical{
     display: none;
     border: none;
+    background-color: var(--color_blanco);
+    backdrop-filter: blur(0.4vw);
     font-size: 14px;
     box-shadow: 0px 2px 5px 0px var(--color_sombras); /* sombras */
     z-index: 99;

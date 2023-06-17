@@ -4,7 +4,7 @@ from apps.productos.models import Producto
 
 class Compra(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateField(auto_now_add=True)
     cantidad_productos = models.PositiveIntegerField(default=0)
     total = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     entregado = models.BooleanField(default=False) #entregado / no entregado

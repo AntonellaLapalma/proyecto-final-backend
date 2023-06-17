@@ -23,7 +23,9 @@
                     <input type="text" id="apellido" name="last_name" value="{{ user.last_name }}" readonly required>
                     <label for="apellido" class="campo {% if user.last_name %} completado {% endif %}">Apellido</label>
                 </div>
-                <!-- <button type="submit" class="enviar">MODIFICAR DATOS</button> -->
+                {% if user.is_staff %}
+                    <a href="/admin" class='btn-negro' id="pagina-admin">ADMINISTRAR SITIO WEB</a>
+                {% endif %}
                 <a href="{% url 'cerrar_sesion' %}" id="registrarse">CERRAR SESIÓN</a>
             </form>
         </div>
